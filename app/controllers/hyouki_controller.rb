@@ -4,16 +4,14 @@ class HyoukiController < ApplicationController
   def show
     klass = params[:class].classify.gsub(/::(\w)/) { |s| s.upcase }.constantize
     args = params[:args].split(',').collect { |a| eval(a) }
+
+    @type = params[:type] || 'html'
     @mail = klass.send(params[:method], *args)
-
-    @type = params[:type] || 'plain'
-
-    @body = if @mail.multipart?
-      @mail.parts.select { |part|
-        part.content_type =~ /#{@type}/
-      }.first.body.to_s
+    @parts = PremailerRails::Hook.delivering_email(@mail)
+    @body = if @parts.count > 1
+      @parts.select { |part| part.content_type =~ /#{@type}/ }.first.body.to_s
     else
-      @mail.body.to_s
+      @parts.first.body.to_s
     end
   end
 end

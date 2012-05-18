@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "hyouki"
   gem.require_paths = ["lib"]
   gem.version       = Hyouki::VERSION
+
+  gem.add_dependency('premailer-rails3')
+  gem.add_dependency('rails', ['~> 3'])
 end
