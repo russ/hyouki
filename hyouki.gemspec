@@ -4,8 +4,8 @@ require File.expand_path('../lib/hyouki/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Russ Smith"]
   gem.email         = ["russ@bashme.org"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{A better way to view and design emails.}
+  gem.summary       = %q{A better way to view and design emails.}
   gem.homepage      = ""
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
